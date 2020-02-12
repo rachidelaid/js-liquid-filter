@@ -1,3 +1,5 @@
+// import solve from './solve.js';
+
 const string = '11112222333344445555';
 
 function isMixed(array) {

@@ -1,10 +1,11 @@
 import './style.css';
 import render from './render.js';
 import generator from './generator.js';
-import { animationStart } from './animate';
+import { animationStart } from './animate.js';
 
 let arrays = generator().next().value;
 arrays.push([]);
+console.log(arrays);
 
 function winCheck() {
   const str = arrays
