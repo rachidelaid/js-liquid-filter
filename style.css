@@ -24,6 +24,8 @@ body {
 }
 
 .tube {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
   height: 200px;
   width: 50px;
   border: 2px solid #fff;
@@ -33,5 +35,29 @@ body {
 }
 
 .tube.active {
-  transform: translateY(-30px);
+  transform: translateY(-100px);
+}
+
+.tube.rotate {
+  transform: translateY(-100px) rotate(55deg);
+}
+
+.block-1 {
+  height: 100%;
+  background-color: var(--color-1);
+}
+
+.block-2 {
+  height: 100%;
+  background-color: var(--color-2);
+}
+
+.block-3 {
+  height: 100%;
+  background-color: var(--color-3);
+}
+
+.block-4 {
+  height: 100%;
+  background-color: var(--color-4);
 }
