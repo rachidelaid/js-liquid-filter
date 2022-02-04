@@ -1,0 +1,21 @@
+:root {
+  --bg-dark: #111;
+  --color-1: #ff0;
+  --color-2: #290;
+  --color-3: #902;
+  --color-4: #05f;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  height: 100vh;
+  width: 100vh;
+}
