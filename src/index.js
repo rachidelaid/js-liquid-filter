@@ -1,29 +1,30 @@
 import './style.css';
 import render from './render.js';
 import generator from './generator.js';
+import { animationStart } from './animate';
 
 const arrays = generator().next().value;
 arrays.push([]);
-console.log(arrays);
 
 function cancelMove() {
   document.querySelectorAll('.tube').forEach((x) => (x.className = 'tube'));
 }
 
-function goodMove(source, target) {
-  const block = source[source.length - 1];
+async function goodMove(source, target) {
+  const block = arrays[source][arrays[source].length - 1];
   const arr = [];
-  for (let i = source.length - 1; i >= 0; i--) {
-    if (source[i] === block) {
-      arr.push(source.pop());
+  for (let i = arrays[source].length - 1; i >= 0; i--) {
+    if (arrays[source][i] === block) {
+      arr.push(arrays[source].pop());
     } else {
       break;
     }
   }
-  target.push(...arr);
+  arrays[target].push(...arr);
+  // render(arrays);
 
+  await animationStart(source, target, arr.length);
   cancelMove();
-  render(arrays);
 }
 
 function move() {
@@ -37,7 +38,7 @@ function move() {
   }
 
   if (arrays[targetID].length === 0) {
-    goodMove(arrays[sourceID], arrays[targetID]);
+    goodMove(sourceID, targetID);
     return;
   }
 
@@ -48,33 +49,12 @@ function move() {
       arrays[targetID][arrays[targetID].length - 1]
   ) {
     console.log('color not matching');
-    console.log(document.querySelector('.active div:last-child').className);
     cancelMove();
     return;
   }
 
-  goodMove(arrays[sourceID], arrays[targetID]);
+  document.querySelector('.active').classList.add('rotate');
+  goodMove(sourceID, targetID);
 }
 
-document.querySelectorAll('.tube').forEach((tube, i) => {
-  tube.id = i;
-  tube.addEventListener('click', () => {
-    document
-      .querySelectorAll('.target')
-      .forEach((x) => x.classList.remove('target'));
-
-    if (
-      document.querySelector('.tube.active') &&
-      !tube.classList.contains('active')
-    ) {
-      tube.classList.toggle('target');
-      move();
-      return;
-    }
-
-    tube.classList.toggle('active');
-    // tube.classList.toggle('rotate');
-  });
-});
-
-render(arrays);
+render(arrays, move);
