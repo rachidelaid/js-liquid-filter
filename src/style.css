@@ -24,8 +24,8 @@ body {
 }
 
 .tube {
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column-reverse;
   height: 200px;
   width: 50px;
   border: 2px solid #fff;
@@ -33,6 +33,10 @@ body {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
+}
+
+.tube div {
+  height: 50px;
 }
 
 .tube.target {
