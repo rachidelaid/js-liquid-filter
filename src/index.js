@@ -11,13 +11,19 @@ function cancelMove() {
 }
 
 function goodMove(source, target) {
-  const block = source.pop();
-  target.push(block);
+  const block = source[source.length - 1];
+  const arr = [];
+  for (let i = source.length - 1; i >= 0; i--) {
+    if (source[i] === block) {
+      arr.push(source.pop());
+    } else {
+      break;
+    }
+  }
+  target.push(...arr);
 
   cancelMove();
   render(arrays);
-
-  console.log(arrays);
 }
 
 function move() {
@@ -25,15 +31,24 @@ function move() {
   const sourceID = +document.querySelector('.active').id;
 
   if (arrays[targetID].length === 4) {
+    console.log('source is full');
     cancelMove();
     return;
   }
 
+  if (arrays[targetID].length === 0) {
+    goodMove(arrays[sourceID], arrays[targetID]);
+    return;
+  }
+
   if (
-    document.querySelector('.target div') &&
-    document.querySelector('.target div').className.split('-')[1] !=
-      arrays[sourceID][arrays[sourceID].length - 1]
+    arrays[targetID].length < 5 &&
+    document.querySelector('.active div:last-child') &&
+    document.querySelector('.active div:last-child').className.split('-')[1] !=
+      arrays[targetID][arrays[targetID].length - 1]
   ) {
+    console.log('color not matching');
+    console.log(document.querySelector('.active div:last-child').className);
     cancelMove();
     return;
   }

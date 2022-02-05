@@ -26,7 +26,8 @@ body {
 .tube {
   display: flex;
   flex-direction: column-reverse;
-  height: 200px;
+  height: 210px;
+  padding-top: 10px;
   width: 50px;
   border: 2px solid #fff;
   border-radius: 0 0 25px 25px;
