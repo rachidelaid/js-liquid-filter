@@ -21,16 +21,19 @@ export default async function moveBlock(active, target, length) {
   }
 
   const s = active.style.getPropertyValue('transform');
-  active.style.setProperty('transform', s.split('rotate')[0] + `rotate(75deg)`);
+  active.style.setProperty('transform', s.split('rotate')[0] + `rotate(80deg)`);
   await wait(150);
+
   for (let i = 0; i < length; i++) {
     target.querySelectorAll(`.animated`)[i].style.height = '50px';
+    // active.querySelectorAll('div')[3 - i].style.height = 0;
     active.querySelector('div:last-child').style.height = 0;
 
     if (i === length - 1) {
       active.style.removeProperty('transition');
-      await wait(550);
     }
+    await wait(550);
+
     active.querySelector('div:last-child').remove();
   }
 
