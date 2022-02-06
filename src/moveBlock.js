@@ -7,9 +7,9 @@ function wait(ms) {
 }
 
 export default async function moveBlock(active, target, length) {
-  await wait(300);
+  await wait(350);
 
-  active.style.setProperty('transition', `all ${length}s ease-in-out`);
+  active.style.setProperty('transition', `all 1s ease-in-out`);
 
   const id = active.querySelector('div:last-child').className.split('-')[1];
 
@@ -20,14 +20,10 @@ export default async function moveBlock(active, target, length) {
     target.append(div);
   }
 
-  await wait(200);
+  const s = active.style.getPropertyValue('transform');
+  active.style.setProperty('transform', s.split('rotate')[0] + `rotate(75deg)`);
+  await wait(150);
   for (let i = 0; i < length; i++) {
-    const s = active.style.getPropertyValue('transform');
-    active.style.setProperty(
-      'transform',
-      s.split('rotate')[0] + `rotate(${65 + 10 * i}deg)`,
-    );
-
     target.querySelectorAll(`.animated`)[i].style.height = '50px';
     active.querySelector('div:last-child').style.height = 0;
 

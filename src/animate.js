@@ -21,7 +21,6 @@ const animationStart = (activeID, targetID, length) => {
     active.classList.add('rotate');
 
     changePosition(active, target, true);
-    console.log(length);
 
     await moveBlock(active, target, length);
 
