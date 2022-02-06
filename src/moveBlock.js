@@ -15,11 +15,12 @@ export default async function moveBlock(active, target, length) {
 
   for (let i = 0; i < length; i++) {
     const div = document.createElement('div');
-    div.className = `block-${id}`;
+    div.className = `block-${id} animated`;
     div.style.height = 0;
     target.append(div);
   }
 
+  await wait(200);
   for (let i = 0; i < length; i++) {
     const s = active.style.getPropertyValue('transform');
     active.style.setProperty(
@@ -27,13 +28,17 @@ export default async function moveBlock(active, target, length) {
       s.split('rotate')[0] + `rotate(${65 + 10 * i}deg)`,
     );
 
-    target.querySelector(`div:nth-child(${length - i})`).style.height = '50px';
+    target.querySelectorAll(`.animated`)[i].style.height = '50px';
     active.querySelector('div:last-child').style.height = 0;
 
     if (i === length - 1) {
-      active.style.setProperty('transition', `all 0.5s ease-in-out`);
+      active.style.removeProperty('transition');
+      await wait(550);
     }
-    await wait(550);
     active.querySelector('div:last-child').remove();
   }
+
+  target
+    .querySelectorAll(`.animated`)
+    .forEach((elm) => elm.classList.remove('animated'));
 }

@@ -9,12 +9,12 @@ const changePosition = (active, target, start) => {
       }px,-130px) rotate(65deg)`,
     );
   } else {
-    active.style.setProperty('transform', 'unset');
+    active.style.removeProperty('transform');
   }
 };
 
 const animationStart = (activeID, targetID, length) => {
-  return new Promise((res) => {
+  return new Promise(async (res) => {
     const active = document.querySelectorAll('.tube')[activeID];
     const target = document.querySelectorAll('.tube')[targetID];
 
@@ -23,7 +23,7 @@ const animationStart = (activeID, targetID, length) => {
     changePosition(active, target, true);
     console.log(length);
 
-    moveBlock(active, target, length);
+    await moveBlock(active, target, length);
 
     // target.querySelectorAll(`.block-${id}`).forEach((div) => {
     //   div.style.height = 0;
@@ -33,10 +33,10 @@ const animationStart = (activeID, targetID, length) => {
     //   div.style.height = '50px';
     // });
 
-    setTimeout(() => {
-      changePosition(active, target, false);
-      res();
-    }, length * 600);
+    changePosition(active, target, false);
+    res();
+    // setTimeout(() => {
+    // }, length * 600);
   });
 };
 const animationStop = () => {};
