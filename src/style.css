@@ -4,6 +4,7 @@
   --color-2: #290;
   --color-3: #902;
   --color-4: #05f;
+  --color-5: rgb(255, 0, 255);
 }
 
 *,
@@ -19,7 +20,7 @@ body {
   height: 100vh;
   width: 100vh;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   place-items: center;
 }
 
@@ -73,4 +74,9 @@ body {
 .block-4 {
   height: 100%;
   background-color: var(--color-4);
+}
+
+.block-5 {
+  height: 100%;
+  background-color: var(--color-5);
 }

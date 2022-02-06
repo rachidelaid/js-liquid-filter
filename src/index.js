@@ -11,19 +11,24 @@ function cancelMove() {
 }
 
 async function goodMove(source, target) {
-  const block = arrays[source][arrays[source].length - 1];
+  const block = [...arrays[source]].pop();
   const arr = [];
   for (let i = arrays[source].length - 1; i >= 0; i--) {
-    if (arrays[source][i] === block) {
+    if (
+      arrays[source][i] === block &&
+      [...arrays[target], ...arr].length + 1 <= 4
+    ) {
       arr.push(arrays[source].pop());
     } else {
       break;
     }
   }
+
   arrays[target].push(...arr);
+  await animationStart(source, target, arr.length);
+
   // render(arrays);
 
-  await animationStart(source, target, arr.length);
   cancelMove();
 }
 
