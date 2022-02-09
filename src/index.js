@@ -51,6 +51,8 @@ async function goodMove(source, target) {
 }
 
 function move() {
+  if (document.querySelector('.rotate')) return;
+
   const targetID = +document.querySelector('.target').id;
   const sourceID = +document.querySelector('.active').id;
 
