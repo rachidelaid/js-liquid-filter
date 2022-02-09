@@ -3,7 +3,6 @@ import moveBlock from './moveBlock';
 const changePosition = (active, target, start) => {
   if (start) {
     if (target.getClientRects()[0].left > active.getClientRects()[0].left) {
-      console.log('less');
       active.style.setProperty(
         'transform',
         `translate(${
@@ -13,7 +12,6 @@ const changePosition = (active, target, start) => {
         }px,-150px) rotate(65deg)`,
       );
     } else {
-      console.log('more');
       let calc =
         active.getClientRects()[0].left - target.getClientRects()[0].right - 70;
 

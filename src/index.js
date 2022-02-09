@@ -44,8 +44,6 @@ async function goodMove(source, target) {
   arrays[target].push(...arr);
   await animationStart(source, target, arr.length);
 
-  // render(arrays);
-
   cancelMove();
   winCheck();
 }
