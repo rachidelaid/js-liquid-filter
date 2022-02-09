@@ -21,7 +21,13 @@ export default async function moveBlock(active, target, length) {
   }
 
   const s = active.style.getPropertyValue('transform');
-  active.style.setProperty('transform', s.split('rotate')[0] + `rotate(80deg)`);
+  const angel = s.split('rotate')[1].includes('-')
+    ? Number(s.split('rotate')[1].match(/\d/g).join('')) * -1
+    : Number(s.split('rotate')[1].match(/\d/g).join(''));
+  active.style.setProperty(
+    'transform',
+    s.split('rotate')[0] + `rotate(${angel + angel / 2}deg)`,
+  );
   await wait(150);
 
   for (let i = 0; i < length; i++) {

@@ -2,12 +2,32 @@ import moveBlock from './moveBlock';
 
 const changePosition = (active, target, start) => {
   if (start) {
-    active.style.setProperty(
-      'transform',
-      `translate(${
-        target.getClientRects()[0].left - active.getClientRects()[0].left - 125
-      }px,-130px) rotate(65deg)`,
-    );
+    if (target.getClientRects()[0].left > active.getClientRects()[0].left) {
+      console.log('less');
+      active.style.setProperty(
+        'transform',
+        `translate(${
+          target.getClientRects()[0].left -
+          active.getClientRects()[0].left -
+          125
+        }px,-150px) rotate(65deg)`,
+      );
+    } else {
+      console.log('more');
+      let calc =
+        active.getClientRects()[0].left - target.getClientRects()[0].right - 70;
+
+      if (calc > 0) {
+        calc *= -1;
+      }
+
+      active.style.setProperty(
+        'transform',
+        `translate(${calc}px,-150px) rotate(-65deg)`,
+      );
+    }
+
+    console.log(active.style.getPropertyValue('transform'));
   } else {
     active.style.removeProperty('transform');
   }
