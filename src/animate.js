@@ -26,8 +26,6 @@ const changePosition = (active, target, start) => {
         `translate(${calc}px,-150px) rotate(-65deg)`,
       );
     }
-
-    console.log(active.style.getPropertyValue('transform'));
   } else {
     active.style.removeProperty('transform');
   }

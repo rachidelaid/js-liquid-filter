@@ -3,7 +3,7 @@ import render from './render.js';
 import generator from './generator.js';
 import { animationStart } from './animate';
 
-const arrays = generator().next().value;
+let arrays = generator().next().value;
 arrays.push([]);
 
 function winCheck() {
@@ -11,7 +11,6 @@ function winCheck() {
     .map((x) => x.join(''))
     .sort()
     .filter((x) => x !== '');
-  console.log(str);
 
   if (
     str[0] === '1111' &&
@@ -82,3 +81,10 @@ function move() {
 }
 
 render(arrays, move);
+
+document.querySelector('.play').addEventListener('click', () => {
+  document.querySelector('.modal-wrap').style.display = 'none';
+  arrays = generator().next().value;
+  arrays.push([]);
+  render(arrays, move);
+});
