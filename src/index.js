@@ -6,6 +6,24 @@ import { animationStart } from './animate';
 const arrays = generator().next().value;
 arrays.push([]);
 
+function winCheck() {
+  const str = arrays
+    .map((x) => x.join(''))
+    .sort()
+    .filter((x) => x !== '');
+  console.log(str);
+
+  if (
+    str[0] === '1111' &&
+    str[1] === '2222' &&
+    str[2] === '3333' &&
+    str[3] === '4444' &&
+    str[4] === '5555'
+  ) {
+    document.querySelector('.modal-wrap').style.display = 'flex';
+  }
+}
+
 function cancelMove() {
   document.querySelectorAll('.tube').forEach((x) => (x.className = 'tube'));
 }
@@ -30,6 +48,7 @@ async function goodMove(source, target) {
   // render(arrays);
 
   cancelMove();
+  winCheck();
 }
 
 function move() {

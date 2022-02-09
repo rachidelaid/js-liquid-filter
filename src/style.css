@@ -80,3 +80,35 @@ body {
   height: 100%;
   background-color: var(--color-5);
 }
+
+.modal-wrap {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.modal svg {
+  color: rgb(21, 99, 0);
+}
+
+.modal .play {
+  background-color: rgb(21, 99, 0);
+  padding: 0.7rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
