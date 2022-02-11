@@ -1,8 +1,19 @@
+const string = '11112222333344445555';
+
+function isMixed(array) {
+  for (let i = 0; i < array.length; i++) {
+    const str = array[i].join('');
+    if (string.includes(str)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export default function* generator() {
   while (true) {
-    const ids = '11112222333344445555'
-      .split('')
-      .sort(() => Math.random() - 0.5);
+    const ids = string.split('').sort(() => Math.random() - 0.5);
     const data = [
       [...ids.slice(0, 4)],
       [...ids.slice(4, 8)],
@@ -11,6 +22,6 @@ export default function* generator() {
       [...ids.slice(16, 20)],
     ];
 
-    yield data;
+    if (isMixed(data)) yield data;
   }
 }
